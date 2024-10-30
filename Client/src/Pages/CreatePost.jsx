@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import { FormField, Loader } from "../Components";
 import { preview } from "../assets";
-
+import { getRandomPrompt } from "../utils";
 const CreatePost = () => {
 
   const navigate=useNavigate();
@@ -19,11 +19,12 @@ const CreatePost = () => {
     e.preventDefault();
 
   }
-  function handleChange(){
-
+  function handleChange(e){
+     setForm({...form,[e.target.name]:e.target.value})
   }
   function handleSurpriseMe(){
-
+      const randomPrompt=getRandomPrompt(form.prompt)
+      setForm({...form,prompt:randomPrompt})
   }
   function generateImage(){
 
