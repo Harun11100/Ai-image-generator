@@ -5,7 +5,7 @@ import { preview } from "../assets";
 import { getRandomPrompt } from "../utils";
 const CreatePost = () => {
 
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
   const [form,setForm]=useState({
     name:'',
     prompt:'',
@@ -15,6 +15,39 @@ const CreatePost = () => {
   const [generatingImg,setGeneratingImg]=useState(false)
   const [isLoading,setIsLoading]=useState(false)
   
+  
+//  const generateImage = async ()=>{
+
+//     if(form.prompt){
+//       try {
+//          setGeneratingImg(true)
+//          const response =await fetch('http://localhost:8080/api/v1/dale',{
+//           method:'POST',
+//           header:{
+//             'Content-Type':'application/json',
+
+//           },
+//           body:JSON.stringify({prompt:form.prompt})
+//          })
+//          const data= await response.json()
+
+//          setForm({...form,photo:`data:image/jpeg;base64,${data.photo}`})
+//       } catch (error) {
+//         console.log(error)
+//         alert(error)
+//       }finally{
+//         setGeneratingImg(false);
+//       }
+//     }else{
+//         alert('Please enter a prompt')
+//       }
+//     }
+ 
+const generateImage = async () => {
+
+};
+
+
   function handleSubmit(e){
     e.preventDefault();
 
@@ -26,10 +59,7 @@ const CreatePost = () => {
       const randomPrompt=getRandomPrompt(form.prompt)
       setForm({...form,prompt:randomPrompt})
   }
-  function generateImage(){
-
-  }
-
+ 
   return (
    <section className="max-w-7xl mx-auto">
         <div>
@@ -59,7 +89,7 @@ const CreatePost = () => {
                  value={form.prompt}
                  onChange={handleChange}
                  isSurpriseMe
-                 handleSupriseMe={handleSurpriseMe}
+                 handleSurpriseMe={handleSurpriseMe}
                />
                  
                  <div className="relative bg-gray-100 border-gray-400 text-gray-70 text-sm focus:ring-blue-600  focus:border-blue-600

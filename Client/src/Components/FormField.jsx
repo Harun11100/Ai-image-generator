@@ -1,7 +1,7 @@
 
 
-const FormField = ({labelName,name,type, placeholder,value,handleChange,isSurpriseMe,handleSurpriseMe}) => {
-      console.log(labelName)
+const FormField = ({labelName,name,type, placeholder,value,onChange,isSurpriseMe,handleSurpriseMe}) => {
+    
   return (
     <div>
       <div className="flex items-center gap-2 mb-2 ">
@@ -16,12 +16,13 @@ const FormField = ({labelName,name,type, placeholder,value,handleChange,isSurpri
                   </button>
             )}   
       </div>
-      <input type={type}
+      <input 
+      type={type}
       id={name}
       name={name}
       placeholder={placeholder}
       value={value}
-      onChange={handleChange}
+      onChange={onChange}
       required
       className="bg-gray-100 p-3 border border-gray-300  text-gray-800  text-sm rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff] outline-none w-full "
       />
