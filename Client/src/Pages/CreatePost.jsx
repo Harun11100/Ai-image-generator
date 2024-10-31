@@ -44,7 +44,34 @@ const CreatePost = () => {
 //     }
  
 const generateImage = async () => {
+  if (form.prompt) {
+      try {
+          setGeneratingImg(true);
 
+          const response = await fetch('http://localhost:8080/api/v1/dalle', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ prompt: form.prompt })
+          });
+
+          if (!response.ok) {
+              throw new Error('Failed to generate image');
+          }
+
+          const data = await response.json();
+
+          setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+      } catch (error) {
+          console.error("Error generating image:", error);
+          alert("There was an error generating the image. Please try again.");
+      } finally {
+          setGeneratingImg(false);
+      }
+  } else {
+      alert('Please enter a prompt');
+  }
 };
 
 
